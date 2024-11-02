@@ -1,4 +1,5 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spotify_clone/data/models/authentication/create_user_request.dart';
@@ -21,6 +22,8 @@ class AuthenticationFirebaseServiceImpl extends AuthenticationFirebaseService {
 
       if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
         message = 'Wrong username or Password';
+      } else if (e.code == 'invalid-credential'){
+        message = 'Wrong username or Password';
       }
 
       return Left(message);
@@ -36,11 +39,11 @@ class AuthenticationFirebaseServiceImpl extends AuthenticationFirebaseService {
     try {
       var data = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: createUserRequest.email, password: createUserRequest.password);
-      // FirebaseFirestore.instance.collection('Users').add({
-      //   'name': createUserRequest.fullName,
-      //   'email':data.user?.email
+      FirebaseFirestore.instance.collection('Users').add({
+        'name': createUserRequest.fullName,
+        'email':data.user?.email
 
-      // });
+      });
       return const Right('Signup was Successful');
     } on FirebaseAuthException catch (e) {
       

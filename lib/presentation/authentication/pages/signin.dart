@@ -6,7 +6,7 @@ import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/data/models/authentication/signin_user_request.dart';
 import 'package:spotify_clone/domain/usecases/authentication/signin_usecase.dart';
 import 'package:spotify_clone/presentation/authentication/pages/signup.dart';
-import 'package:spotify_clone/presentation/root/pages/root.dart';
+import 'package:spotify_clone/presentation/home/pages/home.dart';
 import 'package:spotify_clone/service_locator.dart';
 
 class SignInPage extends StatelessWidget {
@@ -57,7 +57,7 @@ class SignInPage extends StatelessWidget {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }, (r) {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context)=> const RootPage()), (route) => false);
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context)=> const HomePage()), (route) => false);
                   });
             }, title: "Sign In")
           ],
