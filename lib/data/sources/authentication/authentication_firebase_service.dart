@@ -24,6 +24,8 @@ class AuthenticationFirebaseServiceImpl extends AuthenticationFirebaseService {
         message = 'Wrong username or Password';
       } else if (e.code == 'invalid-credential'){
         message = 'Wrong username or Password';
+      } else if (e.code =='invalid-email'){
+        message = 'Invalid email';
       }
 
       return Left(message);
